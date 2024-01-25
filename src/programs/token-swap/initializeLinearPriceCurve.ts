@@ -222,7 +222,7 @@ export const initializeLinearPriceCurveTx = async (
 
   //add tx payer and recent blockchash to setup transaction
 
-  // await addTxPayerAndHash(setupTransaction, connection, walletPubKey);
+  await addTxPayerAndHash(setupTransaction, connection, walletPubKey);
 
   // partially sign setup transaction with generated accounts
 
