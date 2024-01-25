@@ -7,7 +7,7 @@
   "scripts": {
     "test": "npm run test-all-js-library",
     "test-all-js-library": "npx ts-mocha -p ./tsconfig.json -t 1000000 tests/**/*.ts",
-    "test-cs": "npx ts-mocha -p ./tsconfig.json -t 1000000 tests/test.canSwap.ts",
+    "test-cs": "npx ts-mocha -p tsconfig.json -t 1000000 tests/test.canSwap.ts",
     "test-tbc": "npx ts-mocha -p ./tsconfig.json -t 1000000 tests/test.tokenSwap.ts",
     "test-token": "npx ts-mocha -p ./tsconfig.json -t 1000000 tests/test.token.ts",
     "test-freeze": "npx ts-mocha -p ./tsconfig.json -t 1000000 tests/test.freezeTbc.ts",
