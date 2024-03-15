@@ -133,19 +133,6 @@ export const initTBCTx = async (
     expectedSwapAuthorityPDA
   );
 
-  //transfer initial token_b liquidity into the swap token_b token account
-
-  const tokenBTransferIx = Token.createTransferInstruction(
-    TOKEN_PROGRAM_ID,
-    callerTokenBAccount,
-    tokenBTokenAccount.publicKey,
-    callerTokenBAccountOwner
-      ? callerTokenBAccountOwner.publicKey
-      : walletPubKey,
-    [],
-    u64.fromBuffer(initialTokenBLiquidity.toArrayLike(Buffer, "le", 8))
-  );
-
   // create token accounts for fees and pool tokens owned by calling account (can't use associated token account as two accounts req'd)
 
   const { tokenAccount: feeAccount, accountIx: createFeeAccountIx } =
