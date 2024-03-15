@@ -40,7 +40,6 @@ interface initializeLinearPriceCurveTxParams {
   connection: any;
   initialTokenBLiquidity: BN;
   poolTokenMintKeypair: Keypair;
-  tokenInfoKeypair: Keypair;
 }
 
 interface initializeLinearPriceCurveParams {
@@ -58,7 +57,6 @@ interface initializeLinearPriceCurveParams {
   connection: any;
   initialTokenBLiquidity: BN;
     poolTokenMintKeypair: Keypair;
-    tokenInfoKeypair: Keypair;
 }
 
 interface initializeLinearPriceCurveOpts {
@@ -87,7 +85,6 @@ export const initTBCTx = async (
     connection,
     initialTokenBLiquidity,
       poolTokenMintKeypair,
-      tokenInfoKeypair
   } = {} as initializeLinearPriceCurveTxParams,
   {
     callerTokenBAccountOwner,
@@ -236,7 +233,6 @@ export const initTBC = async (
     connection,
     initialTokenBLiquidity,
       poolTokenMintKeypair,
-      tokenInfoKeypair
   } = {} as initializeLinearPriceCurveParams,
   {
     callerTokenBAccountOwner,
@@ -260,7 +256,6 @@ export const initTBC = async (
         connection,
         initialTokenBLiquidity,
           poolTokenMintKeypair,
-          tokenInfoKeypair
       },
       { callerTokenBAccountOwner, adminAccountOwner }
     );
