@@ -13,7 +13,7 @@ import {ComputeBudgetProgram} from "@solana/web3.js";
 const {
   accountLayout: { SWAP_ACCOUNT_SPACE },
 } = config;
-const PRIORITY_RATE = 300; // MICRO_LAMPORTS
+const PRIORITY_RATE = 200000; // MICRO_LAMPORTS
 const PRIORITY_FEE_IX = ComputeBudgetProgram.setComputeUnitPrice({microLamports: PRIORITY_RATE});
 const { PublicKey, Transaction } = web3;
 
