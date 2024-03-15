@@ -8,7 +8,7 @@ import {
   partialSignTx,
   addTxPayerAndHash,
 } from "../../utils";
-import {ComputeBudgetProgram} from "@solana/web3.js";
+import {ComputeBudgetProgram, Keypair} from "@solana/web3.js";
 
 const {
   accountLayout: { SWAP_ACCOUNT_SPACE },
@@ -39,6 +39,8 @@ interface initializeLinearPriceCurveTxParams {
   walletPubKey: web3.PublicKey;
   connection: any;
   initialTokenBLiquidity: BN;
+  poolTokenMintKeypair: Keypair;
+  tokenInfoKeypair: Keypair;
 }
 
 interface initializeLinearPriceCurveParams {
@@ -55,6 +57,8 @@ interface initializeLinearPriceCurveParams {
   wallet: Wallet;
   connection: any;
   initialTokenBLiquidity: BN;
+    poolTokenMintKeypair: Keypair;
+    tokenInfoKeypair: Keypair;
 }
 
 interface initializeLinearPriceCurveOpts {
@@ -82,6 +86,8 @@ export const initTBCTx = async (
     walletPubKey,
     connection,
     initialTokenBLiquidity,
+      poolTokenMintKeypair,
+      tokenInfoKeypair
   } = {} as initializeLinearPriceCurveTxParams,
   {
     callerTokenBAccountOwner,
@@ -109,7 +115,8 @@ export const initTBCTx = async (
       walletPubKey,
       expectedSwapAuthorityPDA,
       null,
-      poolTokenDecimals
+      poolTokenDecimals,
+        poolTokenMintKeypair,
     );
 
   // get token account create instructions for swap pda
@@ -228,6 +235,8 @@ export const initTBC = async (
     wallet,
     connection,
     initialTokenBLiquidity,
+      poolTokenMintKeypair,
+      tokenInfoKeypair
   } = {} as initializeLinearPriceCurveParams,
   {
     callerTokenBAccountOwner,
@@ -250,6 +259,8 @@ export const initTBC = async (
         walletPubKey: wallet.publicKey,
         connection,
         initialTokenBLiquidity,
+          poolTokenMintKeypair,
+          tokenInfoKeypair
       },
       { callerTokenBAccountOwner, adminAccountOwner }
     );

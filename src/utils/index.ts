@@ -245,9 +245,15 @@ export const generateTokenMintInstructions = async (
   walletPubKey: web3.PublicKey,
   authority: web3.PublicKey,
   freezeAuthority: web3.PublicKey | null,
-  decimals: number
+  decimals: number,
+  poolTokenMintKeypair = null
 ) => {
-  const tokenMint = Keypair.generate();
+  let tokenMint;
+  if(poolTokenMintKeypair == null){
+    tokenMint = Keypair.generate();
+  }else{
+    tokenMint = poolTokenMintKeypair;
+  }
   const balanceNeeded = await Token.getMinBalanceRentForExemptMint(connection);
 
   return {

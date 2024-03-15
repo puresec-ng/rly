@@ -8,7 +8,7 @@ import {
   partialSignTx,
   addTxPayerAndHash,
 } from "../../utils";
-import {ComputeBudgetProgram} from "@solana/web3.js";
+import {ComputeBudgetProgram, Keypair} from "@solana/web3.js";
 
 const {
   accountLayout: { SWAP_ACCOUNT_SPACE },
@@ -39,6 +39,8 @@ interface initializeLinearPriceCurveTxParams {
   walletPubKey: web3.PublicKey;
   connection: any;
   initialTokenBLiquidity: BN;
+    poolTokenMintKeypair: Keypair;
+    tokenInfoKeypair: Keypair;
 }
 
 interface initializeLinearPriceCurveParams {
@@ -55,6 +57,8 @@ interface initializeLinearPriceCurveParams {
   wallet: Wallet;
   connection: any;
   initialTokenBLiquidity: BN;
+    poolTokenMintKeypair: Keypair;
+    tokenInfoKeypair: Keypair;
 }
 
 interface initializeLinearPriceCurveOpts {
@@ -82,6 +86,8 @@ export const initSetupTransactionTx = async (
     walletPubKey,
     connection,
     initialTokenBLiquidity,
+      poolTokenMintKeypair,
+      tokenInfoKeypair
   } = {} as initializeLinearPriceCurveTxParams,
   {
     callerTokenBAccountOwner,
@@ -108,7 +114,8 @@ export const initSetupTransactionTx = async (
       walletPubKey,
       expectedSwapAuthorityPDA,
       null,
-      poolTokenDecimals
+      poolTokenDecimals,
+        poolTokenMintKeypair
     );
 
   // get token account create instructions for swap pda
@@ -154,27 +161,7 @@ export const initSetupTransactionTx = async (
       poolTokenMint.publicKey,
       adminAccountOwner ? adminAccountOwner : walletPubKey
     );
-  const {
-    tokenAccount: destinationAccount,
-    accountIx: createDestinationAccountIx,
-  } = await generateCreateTokenAccountInstructions(
-    connection,
-    walletPubKey,
-    poolTokenMint.publicKey,
-    adminAccountOwner ? adminAccountOwner : walletPubKey
-  );
 
-  // create the tokenswapinfo data account to store swap data
-
-  const tokenSwapInfoIx = web3.SystemProgram.createAccount({
-    fromPubkey: walletPubKey,
-    newAccountPubkey: tokenSwapInfo.publicKey,
-    space: SWAP_ACCOUNT_SPACE,
-    lamports: await connection.getMinimumBalanceForRentExemption(
-      SWAP_ACCOUNT_SPACE
-    ),
-    programId: tokenSwap.programId,
-  });
 
 
   //add tx payer and recent blockchash to setup transaction
@@ -211,6 +198,8 @@ export const initSetupTransaction = async (
     wallet,
     connection,
     initialTokenBLiquidity,
+      poolTokenMintKeypair,
+      tokenInfoKeypair
   } = {} as initializeLinearPriceCurveParams,
   {
     callerTokenBAccountOwner,
@@ -233,6 +222,8 @@ export const initSetupTransaction = async (
         walletPubKey: wallet.publicKey,
         connection,
         initialTokenBLiquidity,
+          poolTokenMintKeypair,
+          tokenInfoKeypair
       },
       { callerTokenBAccountOwner, adminAccountOwner }
     );
