@@ -39,7 +39,7 @@ interface initializeLinearPriceCurveTxParams {
   walletPubKey: web3.PublicKey;
   connection: any;
   initialTokenBLiquidity: BN;
-    poolTokenMintKeypair: Keypair;
+    poolTokenMintKeypair: web3.Keypair;
 }
 
 interface initializeLinearPriceCurveParams {
@@ -56,7 +56,7 @@ interface initializeLinearPriceCurveParams {
   wallet: Wallet;
   connection: any;
   initialTokenBLiquidity: BN;
-    poolTokenMintKeypair: Keypair;
+    poolTokenMintKeypair: web3.Keypair;
 }
 
 interface initializeLinearPriceCurveOpts {
