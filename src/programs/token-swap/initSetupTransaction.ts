@@ -67,7 +67,7 @@ interface initializeLinearPriceCurveOpts {
 
 //generate partially signed transaction objects for initializing tbc
 
-export const initializeLinearPriceCurveTx = async (
+export const initSetupTransactionTx = async (
   {
     tokenSwap,
     slopeNumerator,
@@ -218,7 +218,7 @@ export const initSetupTransaction = async (
   } = {} as initializeLinearPriceCurveOpts
 ): Promise<initializeLinearPriceCurveResults> => {
   const { setupTransaction} =
-    await initializeLinearPriceCurveTx(
+    await initSetupTransactionTx(
       {
         tokenSwap,
         slopeNumerator,
