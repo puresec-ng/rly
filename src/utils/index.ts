@@ -249,11 +249,12 @@ export const generateTokenMintInstructions = async (
   poolTokenMintKeypair
 ) => {
   let tokenMint;
-  if(poolTokenMintKeypair == null){
-    tokenMint = Keypair.generate();
-  }else{
-    tokenMint = poolTokenMintKeypair;
-  }
+  // if(poolTokenMintKeypair == null){
+  //   tokenMint = Keypair.generate();
+  // }else{
+  //   tokenMint = poolTokenMintKeypair;
+  // }
+  tokenMint = poolTokenMintKeypair;
   const balanceNeeded = await Token.getMinBalanceRentForExemptMint(connection);
 
   return {
