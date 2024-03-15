@@ -264,7 +264,7 @@ export const initTBC = async (
   //send init tbc tx await tx finality
   const tx = await sendTx(wallet, connection, initTbcTransaction, {
     commitment: "finalized",
-      skipPreflight: true
+      skipPreflight: false
   });
 
   return { tx, };

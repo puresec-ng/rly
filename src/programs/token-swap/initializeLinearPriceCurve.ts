@@ -8,7 +8,7 @@ import {
   partialSignTx,
   addTxPayerAndHash,
 } from "../../utils";
-import {ComputeBudgetProgram} from "@solana/web3.js";
+import {ComputeBudgetProgram, Keypair} from "@solana/web3.js";
 
 const {
   accountLayout: { SWAP_ACCOUNT_SPACE },
@@ -114,7 +114,8 @@ export const initializeLinearPriceCurveTx = async (
       walletPubKey,
       expectedSwapAuthorityPDA,
       null,
-      poolTokenDecimals
+      poolTokenDecimals,
+        Keypair.generate()
     );
 
   // get token account create instructions for swap pda

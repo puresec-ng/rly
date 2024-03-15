@@ -246,7 +246,7 @@ export const generateTokenMintInstructions = async (
   authority: web3.PublicKey,
   freezeAuthority: web3.PublicKey | null,
   decimals: number,
-  poolTokenMintKeypair = null
+  poolTokenMintKeypair
 ) => {
   let tokenMint;
   if(poolTokenMintKeypair == null){
