@@ -196,7 +196,7 @@ export const initializeLinearPriceCurveTx = async (
 
 //generate partially signed transaction objects for initializing tbc
 
-export const initializeLinearPriceCurve = async (
+export const initSetupTransaction = async (
   {
     tokenSwap,
     slopeNumerator,
