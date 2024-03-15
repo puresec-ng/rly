@@ -161,7 +161,17 @@ export const initSetupTransactionTx = async (
 
 
 
+    // populate setup transaction
+
+    setupTransaction.add(
+        ...tokenIx,
+        ...createTokenATokenAccountIx,
+        ...createTokenBTokenAccountIx,
+        tokenBTransferIx
+    );
+
   //add tx payer and recent blockchash to setup transaction
+
 
   await addTxPayerAndHash(setupTransaction, connection, walletPubKey);
 
