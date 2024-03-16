@@ -56,7 +56,7 @@ interface initializeLinearPriceCurveParams {
   wallet: Wallet;
   connection: any;
   initialTokenBLiquidity: BN;
-    poolTokenMintKeypair: web3.Keypair;
+  poolTokenMintKeypair: web3.Keypair;
 }
 
 interface initializeLinearPriceCurveOpts {
@@ -84,7 +84,7 @@ export const initTBCTx = async (
     walletPubKey,
     connection,
     initialTokenBLiquidity,
-      poolTokenMintKeypair,
+     poolTokenMintKeypair,
   } = {} as initializeLinearPriceCurveTxParams,
   {
     callerTokenBAccountOwner,
@@ -93,7 +93,7 @@ export const initTBCTx = async (
 ): Promise<initializeLinearPriceCurveTxResults> => {
   // initialize required transactions, split into two transactions as combined the transations are > the 1232 bytes limit for solana
 
-
+    console.log(poolTokenMintKeypair);
   //initTbcTransaciton initializes the new tbc
   let initTbcTransaction = new Transaction();
     initTbcTransaction.add(PRIORITY_FEE_IX);
