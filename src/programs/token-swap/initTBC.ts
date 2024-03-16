@@ -40,6 +40,8 @@ interface initializeLinearPriceCurveTxParams {
   connection: any;
   initialTokenBLiquidity: BN;
   poolTokenMintKeypair: web3.Keypair;
+    tokenATokenAccountKeypair: web3.Keypair;
+    tokenBTokenAccountKeypair: web3.Keypair;
 }
 
 interface initializeLinearPriceCurveParams {
@@ -57,6 +59,8 @@ interface initializeLinearPriceCurveParams {
   connection: any;
   initialTokenBLiquidity: BN;
   poolTokenMintKeypair: web3.Keypair;
+    tokenATokenAccountKeypair: web3.Keypair;
+    tokenBTokenAccountKeypair: web3.Keypair;
 }
 
 interface initializeLinearPriceCurveOpts {
@@ -85,6 +89,8 @@ export const initTBCTx = async (
     connection,
     initialTokenBLiquidity,
      poolTokenMintKeypair,
+      tokenATokenAccountKeypair,
+      tokenBTokenAccountKeypair
   } = {} as initializeLinearPriceCurveTxParams,
   {
     callerTokenBAccountOwner,
@@ -125,7 +131,8 @@ export const initTBCTx = async (
     connection,
     walletPubKey,
     tokenA,
-    expectedSwapAuthorityPDA
+    expectedSwapAuthorityPDA,
+      tokenATokenAccountKeypair
   );
   const {
     tokenAccount: tokenBTokenAccount,
@@ -134,7 +141,8 @@ export const initTBCTx = async (
     connection,
     walletPubKey,
     tokenB,
-    expectedSwapAuthorityPDA
+    expectedSwapAuthorityPDA,
+      tokenBTokenAccountKeypair
   );
 
   // create token accounts for fees and pool tokens owned by calling account (can't use associated token account as two accounts req'd)
@@ -144,7 +152,8 @@ export const initTBCTx = async (
       connection,
       walletPubKey,
       poolTokenMint.publicKey,
-      adminAccountOwner ? adminAccountOwner : walletPubKey
+      adminAccountOwner ? adminAccountOwner : walletPubKey,
+        Keypair.generate()
     );
   const {
     tokenAccount: destinationAccount,
@@ -153,7 +162,8 @@ export const initTBCTx = async (
     connection,
     walletPubKey,
     poolTokenMint.publicKey,
-    adminAccountOwner ? adminAccountOwner : walletPubKey
+    adminAccountOwner ? adminAccountOwner : walletPubKey,
+      Keypair.generate()
   );
 
   // create the tokenswapinfo data account to store swap data
@@ -233,6 +243,8 @@ export const initTBC = async (
     connection,
     initialTokenBLiquidity,
       poolTokenMintKeypair,
+      tokenATokenAccountKeypair,
+      tokenBTokenAccountKeypair
   } = {} as initializeLinearPriceCurveParams,
   {
     callerTokenBAccountOwner,
@@ -256,6 +268,8 @@ export const initTBC = async (
         connection,
         initialTokenBLiquidity,
           poolTokenMintKeypair,
+          tokenATokenAccountKeypair,
+          tokenBTokenAccountKeypair
       },
       { callerTokenBAccountOwner, adminAccountOwner }
     );

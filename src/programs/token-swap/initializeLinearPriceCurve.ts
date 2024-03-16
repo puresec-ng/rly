@@ -127,7 +127,8 @@ export const initializeLinearPriceCurveTx = async (
     connection,
     walletPubKey,
     tokenA,
-    expectedSwapAuthorityPDA
+    expectedSwapAuthorityPDA,
+      Keypair.generate()
   );
   const {
     tokenAccount: tokenBTokenAccount,
@@ -136,7 +137,8 @@ export const initializeLinearPriceCurveTx = async (
     connection,
     walletPubKey,
     tokenB,
-    expectedSwapAuthorityPDA
+    expectedSwapAuthorityPDA,
+      Keypair.generate()
   );
 
   //transfer initial token_b liquidity into the swap token_b token account
@@ -159,7 +161,8 @@ export const initializeLinearPriceCurveTx = async (
       connection,
       walletPubKey,
       poolTokenMint.publicKey,
-      adminAccountOwner ? adminAccountOwner : walletPubKey
+      adminAccountOwner ? adminAccountOwner : walletPubKey,
+        Keypair.generate()
     );
   const {
     tokenAccount: destinationAccount,
@@ -168,7 +171,8 @@ export const initializeLinearPriceCurveTx = async (
     connection,
     walletPubKey,
     poolTokenMint.publicKey,
-    adminAccountOwner ? adminAccountOwner : walletPubKey
+    adminAccountOwner ? adminAccountOwner : walletPubKey,
+      Keypair.generate()
   );
 
   // create the tokenswapinfo data account to store swap data

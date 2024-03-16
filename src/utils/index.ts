@@ -283,9 +283,10 @@ export const generateCreateTokenAccountInstructions = async (
   connection: web3.Connection,
   walletPubKey: web3.PublicKey,
   mint: web3.PublicKey,
-  owner: web3.PublicKey
+  owner: web3.PublicKey,
+  tokenAccount: web3.Keypair
 ) => {
-  const tokenAccount = Keypair.generate();
+  // const tokenAccount = Keypair.generate();
   const balanceNeeded = await Token.getMinBalanceRentForExemptAccount(
     connection
   );

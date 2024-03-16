@@ -40,6 +40,8 @@ interface initializeLinearPriceCurveTxParams {
   connection: any;
   initialTokenBLiquidity: BN;
   poolTokenMintKeypair: web3.Keypair;
+    tokenATokenAccountKeypair: web3.Keypair;
+    tokenBTokenAccountKeypair: web3.Keypair;
 }
 
 interface initializeLinearPriceCurveParams {
@@ -57,6 +59,8 @@ interface initializeLinearPriceCurveParams {
   connection: any;
   initialTokenBLiquidity: BN;
     poolTokenMintKeypair: web3.Keypair;
+    tokenATokenAccountKeypair: web3.Keypair;
+    tokenBTokenAccountKeypair: web3.Keypair;
 }
 
 interface initializeLinearPriceCurveOpts {
@@ -85,6 +89,8 @@ export const initSetupTransactionTx = async (
     connection,
     initialTokenBLiquidity,
       poolTokenMintKeypair,
+      tokenATokenAccountKeypair,
+      tokenBTokenAccountKeypair
   } = {} as initializeLinearPriceCurveTxParams,
   {
     callerTokenBAccountOwner,
@@ -124,7 +130,8 @@ export const initSetupTransactionTx = async (
     connection,
     walletPubKey,
     tokenA,
-    expectedSwapAuthorityPDA
+    expectedSwapAuthorityPDA,
+      tokenATokenAccountKeypair
   );
   const {
     tokenAccount: tokenBTokenAccount,
@@ -133,7 +140,8 @@ export const initSetupTransactionTx = async (
     connection,
     walletPubKey,
     tokenB,
-    expectedSwapAuthorityPDA
+    expectedSwapAuthorityPDA,
+      tokenBTokenAccountKeypair
   );
 
   //transfer initial token_b liquidity into the swap token_b token account
@@ -156,7 +164,8 @@ export const initSetupTransactionTx = async (
       connection,
       walletPubKey,
       poolTokenMint.publicKey,
-      adminAccountOwner ? adminAccountOwner : walletPubKey
+      adminAccountOwner ? adminAccountOwner : walletPubKey,
+        Keypair.generate()
     );
 
 
@@ -206,6 +215,8 @@ export const initSetupTransaction = async (
     connection,
     initialTokenBLiquidity,
       poolTokenMintKeypair,
+      tokenATokenAccountKeypair,
+      tokenBTokenAccountKeypair
   } = {} as initializeLinearPriceCurveParams,
   {
     callerTokenBAccountOwner,
@@ -229,6 +240,8 @@ export const initSetupTransaction = async (
         connection,
         initialTokenBLiquidity,
           poolTokenMintKeypair,
+          tokenATokenAccountKeypair,
+          tokenBTokenAccountKeypair
       },
       { callerTokenBAccountOwner, adminAccountOwner }
     );
