@@ -249,7 +249,7 @@ export const generateTokenMintInstructions = async (
   poolTokenMintKeypair: web3.Keypair
 ) => {
   let tokenMint;
-  console.log(poolTokenMintKeypair);
+  // console.log(poolTokenMintKeypair);
   // if(poolTokenMintKeypair == null){
   //   tokenMint = Keypair.generate();
   // }else{

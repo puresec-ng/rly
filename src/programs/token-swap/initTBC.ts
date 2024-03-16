@@ -93,7 +93,7 @@ export const initTBCTx = async (
 ): Promise<initializeLinearPriceCurveTxResults> => {
   // initialize required transactions, split into two transactions as combined the transations are > the 1232 bytes limit for solana
 
-    console.log(poolTokenMintKeypair);
+    // console.log(poolTokenMintKeypair);
   //initTbcTransaciton initializes the new tbc
   let initTbcTransaction = new Transaction();
     initTbcTransaction.add(PRIORITY_FEE_IX);
